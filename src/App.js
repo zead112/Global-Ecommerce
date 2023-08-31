@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
   Home,
   Product,
@@ -13,9 +13,14 @@ import {
   PageNotFound,
 } from "./pages";
 function App() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/Home");
+  }, []);
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/Home" element={<Home />} />
       <Route path="/product" element={<Products />} />
       <Route path="/product/:id" element={<Product />} />
       <Route path="/about" element={<AboutPage />} />
@@ -24,7 +29,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/llll" element={<PageNotFound />} />
+      <Route path="*" element={<PageNotFound />} />
       <Route path="/product/*" element={<PageNotFound />} />
     </Routes>
   );
